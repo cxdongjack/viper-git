@@ -60,9 +60,9 @@ case "$cmd" in
         # 将开发分支与源同步
         git push -f --set-upstream origin $branch
 
-        echo "---> make开始"
-        make
-        echo "---> make结束, commit开始"
+        echo "---> build开始"
+        npm run build
+        echo "---> build结束, commit开始"
 
         git checkout $alpha
         git pull
