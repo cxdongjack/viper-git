@@ -1,6 +1,6 @@
 {
   "name": "viper-git",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "simplify git operation!",
   "bin": "bin/viper-git",
   "main": "index.js",
