@@ -87,6 +87,11 @@ case "$cmd" in
             git push -f --set-upstream origin $alpha
         fi
 
+        if [[ -e ../../viper-git-extend ]]
+        then
+            ../../viper-git-extend alpha "$msg" 1
+        fi
+
         git checkout $branch
         ;;
     publish)
@@ -153,6 +158,11 @@ case "$cmd" in
             git push -f --set-upstream origin $deploy
         else
             exit
+        fi
+
+        if [[ -e ../../viper-git-extend ]]
+        then
+            ../../viper-git-extend production "$msg"
         fi
 
         # Merge发布分支
