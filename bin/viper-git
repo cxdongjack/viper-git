@@ -33,7 +33,8 @@ case "$cmd" in
         [[ $# -ne 1 ]] && echo "Usage: $0 hotfix" && exit
         echo '从上次deploy分支创建新的hotfix分支'
         git checkout deploy
-        git pull
+        # 强制同步 like git pull -f
+        git fetch;git reset --hard origin/`git rev-parse --abbrev-ref HEAD`
         # find hash in last commit
         # %s: subject
         # %f: sanitized subject line, suitable for a filename
@@ -65,7 +66,8 @@ case "$cmd" in
         echo "---> build结束, commit开始"
 
         git checkout $alpha
-        git pull
+        # 强制同步 like git pull -f
+        git fetch;git reset --hard origin/`git rev-parse --abbrev-ref HEAD`
         ./xbox.sh
         git add -A
         git commit -m "$msg"
@@ -115,7 +117,8 @@ case "$cmd" in
 
         # 切换到alpha
         git checkout $alpha
-        git pull
+        # 强制同步 like git pull -f
+        git fetch;git reset --hard origin/`git rev-parse --abbrev-ref HEAD`
 
         # 检查commit hash
         hash=`git log -1 --pretty=format:%b | grep 'from:' | awk '{print $2}' | head -1`
